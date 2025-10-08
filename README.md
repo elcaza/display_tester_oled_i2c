@@ -27,6 +27,9 @@ Este proyecto considera:
     + `#define SCREEN_HEIGHT 64`
 3. Compila y carga el código en el ESP32
 
+# Conexiones
+<img src="https://raw.githubusercontent.com/elcaza/display_tester_oled_i2c/refs/heads/main/images/display_connections.png">
+
 # Teoría
 
 ## ¿Qué es el protocolo I2C?
