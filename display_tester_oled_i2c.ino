@@ -5,7 +5,9 @@
 #include <Adafruit_GFX.h>
 #include <Adafruit_SSD1306.h>
 
-// *************** VARIABLES ***************
+// ****************************************************
+// VARIABLES DE PANTALLA (I2C)
+// ****************************************************
 
 // SDA va al GPIO 21 || también puede ser 32
 // SCL va al GPIO 22 || también puede ser 33
@@ -16,6 +18,7 @@
 #define SCREEN_HEIGHT 64   // Alto de la pantalla OLED, en píxeles
 // Dirección I2C del OLED. Los valores comunes son 0x3C o 0x3D.
 #define OLED_ADDR 0x3C
+
 const long SERIAL_BAUD = 9600;
 
 // Usamos -1 para el pin de RESET, ya que la mayoría de los módulos I2C no lo usan
@@ -70,13 +73,13 @@ void setup() {
 
 	// 2. Detiene el programa
 	if (final_addr == 0x00) {
-		Serial.println(F("Error: La pantalla no fue encontrada en 0x3C ni 0x3D. Posibles errores, cableado o modulo. Tus pines del ESP32 también podrían estar quemados."));
+		Serial.println(F("ERROR: La pantalla no fue encontrada en 0x3C ni 0x3D. Posibles errores, cableado o modulo. Tus pines del ESP32 también podrían estar quemados."));
 		for(;;);
 	}
 
 	// 3. Inicialización. Solo si el hardware respondió
 	if (!display.begin(SSD1306_SWITCHCAPVCC, final_addr)) {
-		Serial.println(F("FATAL: Inicializacion de la librería falló en la direccion encontrada."));
+		Serial.println(F("ERROR: Inicializacion de la librería falló en la direccion encontrada."));
 		for(;;);
 	} else {
 		Serial.print(F("INFO: Pantalla inicializada correctamente en 0x"));
