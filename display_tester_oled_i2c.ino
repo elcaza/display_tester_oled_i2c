@@ -5,7 +5,7 @@
 #include <Adafruit_GFX.h>
 #include <Adafruit_SSD1306.h>
 
-// --- VARIABLES ---
+// *************** VARIABLES ***************
 
 // SDA va al GPIO 21 || también puede ser 32
 // SCL va al GPIO 22 || también puede ser 33
@@ -20,8 +20,6 @@ const long SERIAL_BAUD = 9600;
 
 // Usamos -1 para el pin de RESET, ya que la mayoría de los módulos I2C no lo usan
 Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, -1);
-
-// --- FUNCIONES DE CHEQUEO Y DIBUJO ---
 
 bool checkI2cAddress(uint8_t address) {
 	// Intenta contactar la dirección I2C.
@@ -81,7 +79,6 @@ void setup() {
 		Serial.println(F("FATAL: Inicializacion de la librería falló en la direccion encontrada."));
 		for(;;);
 	} else {
-		// Informe de éxito
 		Serial.print(F("INFO: Pantalla inicializada correctamente en 0x"));
 		Serial.println(final_addr, HEX);
 
