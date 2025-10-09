@@ -65,29 +65,29 @@ void setup() {
 
 	// 1. Verifica si la pantalla está conectada (evita el falso positivo de display.begin())
 	if (checkI2cAddress(OLED_ADDR)) {
-			final_addr = OLED_ADDR;
+		final_addr = OLED_ADDR;
 	} else if (checkI2cAddress(0x3D)) {
-			final_addr = 0x3D;
+		final_addr = 0x3D;
 	}
 
 	// 2. Detiene el programa
 	if (final_addr == 0x00) {
-			Serial.println(F("Error: La pantalla no fue encontrada en 0x3C ni 0x3D. Posibles errores, cableado o modulo. Tus pines del ESP32 también podrían estar quemados."));
-			for(;;);
+		Serial.println(F("Error: La pantalla no fue encontrada en 0x3C ni 0x3D. Posibles errores, cableado o modulo. Tus pines del ESP32 también podrían estar quemados."));
+		for(;;);
 	}
 
 	// 3. Inicialización. Solo si el hardware respondió
 	if (!display.begin(SSD1306_SWITCHCAPVCC, final_addr)) {
-			Serial.println(F("FATAL: Inicializacion de la librería falló en la direccion encontrada."));
-			for(;;);
+		Serial.println(F("FATAL: Inicializacion de la librería falló en la direccion encontrada."));
+		for(;;);
 	} else {
-			// Informe de éxito
-			Serial.print(F("INFO: Pantalla inicializada correctamente en 0x"));
-			Serial.println(final_addr, HEX);
+		// Informe de éxito
+		Serial.print(F("INFO: Pantalla inicializada correctamente en 0x"));
+		Serial.println(final_addr, HEX);
 
-			if (final_addr == 0x3D) {
-				 Serial.println(F("ATENCION: Se usó la direccion 0x3D. Ajusta tu codigo principal"));
-			}
+		if (final_addr == 0x3D) {
+			Serial.println(F("INFO: Se usó la direccion 0x3D. Ajusta tu codigo principal"));
+		}
 	}
 
 	display_message();

@@ -21,11 +21,12 @@ Este proyecto considera:
         + // SDA va al GPIO 21 || también puede ser 32
     + `#define SCL_PIN 33`
         + // SCL va al GPIO 22 || también puede ser 33
-
 2. Opcional: Ancho y alto de la pantalla
     + `#define SCREEN_WIDTH 128`
     + `#define SCREEN_HEIGHT 64`
 3. Compila y carga el código en el ESP32
+4. A través del "Serial Monitor (9600)" podrás ver si existen errores 
+    + Prueba al menos dos veces reiniciando el dispositivo
 
 # Conexiones
 <img src="https://raw.githubusercontent.com/elcaza/display_tester_oled_i2c/refs/heads/main/images/display_connections.png">
